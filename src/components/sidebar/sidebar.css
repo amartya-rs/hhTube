@@ -1,0 +1,30 @@
+aside {
+   background: transparent;
+   grid-area: aside;
+}
+
+.side-nav li {
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   gap: 10px;
+
+   padding: 10px;
+   cursor: pointer;
+   border-radius: 5px;
+}
+
+.side-nav {
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+}
+
+.side-nav li span {
+   font-size: 1.15rem;
+   background-color: transparent;
+}
+
+.active {
+   background-color: rgba(0, 0, 0, 0.2);
+}
