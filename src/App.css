@@ -1,0 +1,11 @@
+.App {
+   min-height: 100vh;
+   width: 100%;
+   display: grid;
+   grid-template-columns: 14rem 1fr;
+   grid-template-rows: 4.5rem 1fr auto;
+   grid-template-areas:
+      "topnav topnav"
+      "aside main"
+      "footer footer";
+}

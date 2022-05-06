@@ -1,0 +1,18 @@
+.page .category {
+   cursor: pointer;
+}
+
+.page .category .overlay {
+   top: 11.5rem;
+   height: 25%;
+}
+
+.page .vertical {
+   width: 20rem;
+   height: 17.5rem;
+}
+
+.page .vertical .card-img {
+   object-fit: cover;
+   height: 100%;
+}

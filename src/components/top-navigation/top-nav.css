@@ -1,0 +1,6 @@
+.main-nav {
+   height: 4rem;
+   padding-right: 2rem;
+
+   grid-area: topnav;
+}
