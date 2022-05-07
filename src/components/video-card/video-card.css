@@ -1,0 +1,61 @@
+.video-card {
+   width: 15.75rem;
+   height: calc(15.75rem - 1rem);
+   background-color: var(--CONTAINER-BG);
+   border-radius: 5px;
+   overflow: hidden;
+
+   position: relative;
+}
+
+.video-card:hover {
+   transform: scale(1.012);
+   cursor: pointer;
+}
+
+.video-card .card-footer {
+   display: flex;
+   justify-content: flex-start;
+
+   padding-top: 10px;
+   padding-left: 10px;
+}
+
+.video-card h6 {
+   font-size: 15px;
+}
+
+.video-card .video-content {
+   margin-left: 10px;
+}
+
+.video-card .time-badge {
+   background-color: var(--SECONDARY-COLOR);
+   color: var(--WHITE);
+   padding: 4px 6px;
+   border-radius: 5px;
+
+   position: absolute;
+   top: 10px;
+}
+
+.video-card .icon-wrapper {
+   margin-right: 5px;
+   position: absolute;
+   top: 51%;
+   right: 0;
+
+   display: flex;
+   gap: 10px;
+}
+
+.video-card .icon-wrapper > span {
+   height: 2.2rem;
+   aspect-ratio: 1/1;
+   border-radius: 50%;
+   background-color: var(--WHITE);
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
