@@ -1,0 +1,30 @@
+.page .video-section {
+   width: 100%;
+
+   display: flex;
+   justify-content: flex-start;
+   flex-wrap: wrap;
+   gap: 1rem;
+}
+
+/*filter chips styling on explore page*/
+.filter-chip {
+   min-width: max-content;
+   border: 2px solid var(--PRIMARY-COLOR);
+   border-radius: 5rem;
+   padding: 8px 1rem;
+   cursor: pointer;
+}
+
+.filter-chip-wrapper {
+   width: 100%;
+
+   display: flex;
+   flex-flow: row wrap;
+   gap: 1rem;
+}
+
+.selected-chip {
+   background-color: var(--PRIMARY-COLOR);
+   color: var(--WHITE);
+}

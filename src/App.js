@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Mockman from "mockman-js";
-import { HomePage } from "./pages/index";
+import { HomePage, ExplorePage } from "./pages/index";
 import { Footer, Sidebar, TopNav } from "./components";
 
 const App = () => {
@@ -11,6 +11,7 @@ const App = () => {
          <Sidebar />
          <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/explore" element={<ExplorePage />} />
             <Route path="/mockman" element={<Mockman />} />
          </Routes>
          <Footer />
