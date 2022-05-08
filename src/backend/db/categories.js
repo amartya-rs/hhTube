@@ -9,20 +9,38 @@ import * as categoryImages from "../../assets/index";
 export const categories = [
    {
       _id: uuid(),
+      categoryName: "All",
+      featured: false,
+   },
+   {
+      _id: uuid(),
       categoryName: "Rap music",
+      featured: true,
       imgUrl: categoryImages.eminem,
       description: "",
    },
    {
       _id: uuid(),
       categoryName: "Beatboxing",
+      featured: true,
       imgUrl: categoryImages.beatboxing,
       description: "",
    },
    {
       _id: uuid(),
-      categoryName: "B-boying",
+      categoryName: "B boying",
+      featured: true,
       imgUrl: categoryImages.bboying,
       description: "",
+   },
+   {
+      _id: uuid(),
+      categoryName: "Desi hiphop",
+      featured: false,
+   },
+   {
+      _id: uuid(),
+      categoryName: "Old school",
+      featured: false,
    },
 ];
