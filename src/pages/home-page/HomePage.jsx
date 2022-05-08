@@ -15,20 +15,19 @@ const HomePage = () => {
          </header>
          <h3>Popular Categories</h3>
          <section className="category-section my-4">
-            {categories &&
-               categories
-                  .filter((ele) => ele.featured)
-                  .map((ele) => (
-                     <CategoryCard
-                        key={ele._id}
-                        categoryName={ele.categoryName}
-                        imageUrl={ele.imgUrl}
-                        redirect={() => {
-                           navigate("/explore");
-                           setCurrentCategory(ele.categoryName);
-                        }}
-                     />
-                  ))}
+            {categories
+               ?.filter((ele) => ele.featured)
+               ?.map((ele) => (
+                  <CategoryCard
+                     key={ele._id}
+                     categoryName={ele.categoryName}
+                     imageUrl={ele.imgUrl}
+                     redirect={() => {
+                        navigate("/explore");
+                        setCurrentCategory(ele.categoryName);
+                     }}
+                  />
+               ))}
          </section>
       </main>
    );

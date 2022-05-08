@@ -3,6 +3,8 @@ import { MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
 import { AiOutlineLike } from "react-icons/ai";
 
 const VideoCard = ({ videoData }) => {
+   const CARD_ICON_SIZE = "24px";
+
    return (
       <div className="video-card">
          <img
@@ -18,13 +20,13 @@ const VideoCard = ({ videoData }) => {
             ></img>
             <div className="icon-wrapper">
                <span>
-                  <AiOutlineLike size="24px" />
+                  <AiOutlineLike size={CARD_ICON_SIZE} />
                </span>
                <span>
-                  <MdOutlineWatchLater size="24px" />
+                  <MdOutlineWatchLater size={CARD_ICON_SIZE} />
                </span>
                <span>
-                  <MdPlaylistAdd size="24px" />
+                  <MdPlaylistAdd size={CARD_ICON_SIZE} />
                </span>
             </div>
             <span className="time-badge">{videoData.videoLength}</span>
