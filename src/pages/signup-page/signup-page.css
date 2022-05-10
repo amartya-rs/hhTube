@@ -1,0 +1,12 @@
+.signup-page {
+   display: grid;
+   grid-template-columns: 1fr;
+}
+
+.signup-page .auth-form {
+   box-shadow: none;
+
+   align-self: center;
+   justify-self: center;
+   gap: 1rem;
+}
