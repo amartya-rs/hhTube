@@ -139,7 +139,7 @@ const AuthProvider = ({ children }) => {
 
    //validating signup credentials
    const checkSignupCredentials = ({ name, value }) => {
-      const emailTest = /^\w+\@\w+\.\w{2,}$/;
+      const emailTest = /^\w+@\w+\.\w{2,}$/;
       if (value === "") {
          authDispatch({
             type: "SET_ERROR",

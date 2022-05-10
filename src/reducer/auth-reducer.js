@@ -50,7 +50,7 @@ const authReducer = (authState, { type, payload }) => {
             error: "",
          };
       default:
-         authState;
+         return authState;
    }
 };
 
