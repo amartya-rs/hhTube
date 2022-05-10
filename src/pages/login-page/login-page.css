@@ -1,0 +1,29 @@
+.login-page {
+   display: grid;
+   grid-template-columns: 1fr;
+}
+
+.login-page .auth-form {
+   box-shadow: none;
+
+   align-self: center;
+   justify-self: center;
+}
+
+.helper {
+   color: var(--PRIMARY-COLOR);
+   cursor: pointer;
+   font-size: 13px;
+}
+
+.helper:hover {
+   transform: scale(1.025);
+}
+
+.auth-error {
+   color: var(--DANGER-COLOR);
+}
+
+.login-page .auth-form {
+   gap: 1.25rem;
+}
