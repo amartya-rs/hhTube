@@ -9,7 +9,9 @@ export const useAxios = () => {
    const apiCall = async (requiredData, axiosParams) => {
       try {
          const res = await axios.request(axiosParams);
-         setResponse(res.data[requiredData]);
+         requiredData
+            ? setResponse(res.data[requiredData])
+            : setResponse(res.data);
       } catch (error) {
          setError(error);
       } finally {
