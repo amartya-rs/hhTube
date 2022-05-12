@@ -3,7 +3,7 @@ import "./category-card.css";
 const CategoryCard = ({ imageUrl, categoryName, redirect }) => {
    return (
       <div className="card vertical category" onClick={redirect}>
-         <img className="card-img" src={imageUrl} />
+         <img className="card-img" src={imageUrl} alt="video category" />
          <div className="overlay h4">{categoryName}</div>
       </div>
    );

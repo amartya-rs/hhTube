@@ -59,3 +59,8 @@
    align-items: center;
    justify-content: center;
 }
+
+.card-icon {
+   height: 24px;
+   width: 24px;
+}
