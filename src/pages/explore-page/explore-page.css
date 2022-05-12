@@ -24,7 +24,7 @@
    gap: 1rem;
 }
 
-.selected-chip {
+.active-chip {
    background-color: var(--PRIMARY-COLOR);
    color: var(--WHITE);
 }

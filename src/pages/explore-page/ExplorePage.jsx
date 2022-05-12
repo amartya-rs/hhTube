@@ -13,7 +13,7 @@ const ExplorePage = () => {
                <span
                   key={ele._id}
                   className={`filter-chip font-medium ${
-                     ele.categoryName === currentCategory ? "selected-chip" : ""
+                     ele.categoryName === currentCategory ? "active-chip" : ""
                   }`}
                   onClick={() => setCurrentCategory(ele.categoryName)}
                >
