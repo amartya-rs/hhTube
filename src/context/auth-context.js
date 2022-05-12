@@ -23,10 +23,9 @@ const AuthProvider = ({ children }) => {
 
    //if token is present in localstorage then show user logged in
    useEffect(() => {
-      if (localStorage.getItem("token")) {
-         authDispatch({ type: "TOGGLE_LOGIN" });
+      if (localStorage.getItem("token") !== null) {
+         authDispatch({ type: "TOGGLE_LOGIN", payload: true });
       }
-      // eslint-disable-next-line
    }, []);
 
    useEffect(() => {
@@ -44,6 +43,7 @@ const AuthProvider = ({ children }) => {
             payload: "Credentials not found",
          });
       }
+      // eslint-disable-next-line
    }, [loginUserData, loginError]);
 
    useEffect(() => {
@@ -61,6 +61,7 @@ const AuthProvider = ({ children }) => {
             payload: "Some error occured, please try again",
          });
       }
+      // eslint-disable-next-line
    }, [signupUserData, signupError]);
 
    //setting the guest credentials
@@ -190,7 +191,6 @@ const AuthProvider = ({ children }) => {
    //logging out user
    const logoutUser = () => {
       localStorage.removeItem("token");
-      authDispatch({ type: "TOGGLE_LOGIN" });
       authDispatch({ type: "CLEAR_FIELDS" });
    };
 
