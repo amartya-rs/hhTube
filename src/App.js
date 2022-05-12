@@ -20,12 +20,12 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/mockman" element={<Mockman />} />
-            //restricted routes
+            {/*restricted routes*/}
             <Route element={<RestrictedRoute />}>
                <Route path="/login" element={<LoginPage />} />
                <Route path="/signup" element={<SignUpPage />} />
             </Route>
-            //private routes
+            {/*private routes*/}
             <Route element={<PrivateRoute />}>
                <Route path="/likedvideos" element={<LikedVideoPage />} />
             </Route>

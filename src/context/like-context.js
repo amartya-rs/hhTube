@@ -4,24 +4,23 @@ import { useAxios } from "../utils/useAxios";
 const LikeContext = createContext();
 
 const LikeProvider = ({ children }) => {
-   const { response: likedVideos, apiCall: getLikedVideos } = useAxios();
+   const { response: likedVideos, apiCall: likeVideoOperation } = useAxios();
 
    //fetching liked videos
    useEffect(() => {
-      getLikedVideos("likes", {
+      likeVideoOperation("likes", {
          method: "get",
          url: "/api/user/likes",
          headers: {
             accept: "*/*",
             authorization: localStorage.getItem("token"),
          },
-         data: {},
       });
    }, []);
 
    //add a video to liked videos
    const addToLike = (video) => {
-      getLikedVideos("likes", {
+      likeVideoOperation("likes", {
          method: "post",
          url: "/api/user/likes",
          headers: {
@@ -34,14 +33,13 @@ const LikeProvider = ({ children }) => {
 
    //remove a video from liked videos
    const removeFromLike = (video) => {
-      getLikedVideos("likes", {
+      likeVideoOperation("likes", {
          method: "delete",
          url: `/api/user/likes/${video._id}`,
          headers: {
             accept: "*/*",
             authorization: localStorage.getItem("token"),
          },
-         data: {},
       });
    };
 
