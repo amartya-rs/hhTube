@@ -1,9 +1,14 @@
 import "./video-card.css";
 import { MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
-import { AiOutlineLike } from "react-icons/ai";
+import { AiOutlineLike, AiFillLike } from "react-icons/ai";
+import { useLike, useAuth } from "../../context";
+import { isPresentInData } from "../../utils/isPresentInData";
+import { useNavigate } from "react-router-dom";
 
 const VideoCard = ({ videoData }) => {
-   const CARD_ICON_SIZE = "24px";
+   const { likedVideos, addToLike, removeFromLike } = useLike();
+   const { authState } = useAuth();
+   const navigate = useNavigate();
 
    return (
       <div className="video-card">
@@ -20,13 +25,33 @@ const VideoCard = ({ videoData }) => {
             ></img>
             <div className="icon-wrapper">
                <span>
-                  <AiOutlineLike size={CARD_ICON_SIZE} />
+                  {isPresentInData(likedVideos, videoData._id) ? (
+                     <AiFillLike
+                        title="unlike video"
+                        className="card-icon"
+                        onClick={() =>
+                           authState.isLoggedIn
+                              ? removeFromLike(videoData)
+                              : navigate("/login")
+                        }
+                     />
+                  ) : (
+                     <AiOutlineLike
+                        title="like video"
+                        className="card-icon"
+                        onClick={() =>
+                           authState.isLoggedIn
+                              ? addToLike(videoData)
+                              : navigate("/login")
+                        }
+                     />
+                  )}
                </span>
                <span>
-                  <MdOutlineWatchLater size={CARD_ICON_SIZE} />
+                  <MdOutlineWatchLater className="card-icon" />
                </span>
                <span>
-                  <MdPlaylistAdd size={CARD_ICON_SIZE} />
+                  <MdPlaylistAdd className="card-icon" />
                </span>
             </div>
             <span className="time-badge">{videoData.videoLength}</span>

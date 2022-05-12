@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { BiUserCircle } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
+import { useAuth } from "../../context";
 import "./top-nav.css";
-import { useAuth } from "../../context/auth-context";
 
 const TopNav = () => {
    const navigate = useNavigate();

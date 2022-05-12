@@ -1,5 +1,5 @@
 import { VideoCard } from "../../components/index";
-import { useVideo } from "../../context/video-context";
+import { useVideo } from "../../context";
 import "./explore-page.css";
 
 const ExplorePage = () => {
@@ -13,7 +13,7 @@ const ExplorePage = () => {
                <span
                   key={ele._id}
                   className={`filter-chip font-medium ${
-                     ele.categoryName === currentCategory ? "selected-chip" : ""
+                     ele.categoryName === currentCategory ? "active-chip" : ""
                   }`}
                   onClick={() => setCurrentCategory(ele.categoryName)}
                >

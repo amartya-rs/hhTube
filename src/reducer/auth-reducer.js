@@ -4,7 +4,7 @@ const authReducer = (authState, { type, payload }) => {
       case "TOGGLE_LOGIN":
          return {
             ...authState,
-            isLoggedIn: !authState.isLoggedIn,
+            isLoggedIn: payload,
          };
       case "SET_EMAIL":
          return {
@@ -48,6 +48,7 @@ const authReducer = (authState, { type, payload }) => {
             email: "",
             password: "",
             error: "",
+            isLoggedIn: !authState.isLoggedIn,
          };
       default:
          return authState;
