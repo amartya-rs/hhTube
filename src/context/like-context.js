@@ -1,22 +1,27 @@
 import { createContext, useContext, useEffect } from "react";
 import { useAxios } from "../utils/useAxios";
+import { useAuth } from "./auth-context";
 
 const LikeContext = createContext();
 
 const LikeProvider = ({ children }) => {
+   const { authState } = useAuth();
    const { response: likedVideos, apiCall: likeVideoOperation } = useAxios();
 
    //fetching liked videos
    useEffect(() => {
-      likeVideoOperation("likes", {
-         method: "get",
-         url: "/api/user/likes",
-         headers: {
-            accept: "*/*",
-            authorization: localStorage.getItem("token"),
-         },
-      });
-   }, []);
+      if (authState.isLoggedIn) {
+         likeVideoOperation("likes", {
+            method: "get",
+            url: "/api/user/likes",
+            headers: {
+               accept: "*/*",
+               authorization: localStorage.getItem("token"),
+            },
+         });
+      }
+      // eslint-disable-next-line
+   }, [authState.isLoggedIn]);
 
    //add a video to liked videos
    const addToLike = (video) => {
