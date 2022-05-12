@@ -1,7 +1,12 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Mockman from "mockman-js";
-import { HomePage, ExplorePage, LikedVideoPage } from "./pages/index";
+import {
+   HomePage,
+   ExplorePage,
+   LikedVideoPage,
+   WatchlaterPage,
+} from "./pages/index";
 import {
    Footer,
    Sidebar,
@@ -28,6 +33,7 @@ const App = () => {
             {/*private routes*/}
             <Route element={<PrivateRoute />}>
                <Route path="/likedvideos" element={<LikedVideoPage />} />
+               <Route path="/watchlater" element={<WatchlaterPage />} />
             </Route>
          </Routes>
          <Footer />

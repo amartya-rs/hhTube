@@ -1,12 +1,18 @@
 import "./video-card.css";
-import { MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
+import {
+   MdOutlineWatchLater,
+   MdPlaylistAdd,
+   MdWatchLater,
+} from "react-icons/md";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
-import { useLike, useAuth } from "../../context";
+import { useLike, useAuth, useWatchlater } from "../../context";
 import { isPresentInData } from "../../utils/isPresentInData";
 import { useNavigate } from "react-router-dom";
 
 const VideoCard = ({ videoData }) => {
    const { likedVideos, addToLike, removeFromLike } = useLike();
+   const { watchlaterVideos, addToWatchlater, removeFromWatchlater } =
+      useWatchlater();
    const { authState } = useAuth();
    const navigate = useNavigate();
 
@@ -25,7 +31,8 @@ const VideoCard = ({ videoData }) => {
             ></img>
             <div className="icon-wrapper">
                <span>
-                  {isPresentInData(likedVideos, videoData._id) ? (
+                  {isPresentInData(likedVideos, videoData._id) &&
+                  authState.isLoggedIn ? (
                      <AiFillLike
                         title="unlike video"
                         className="card-icon"
@@ -48,7 +55,28 @@ const VideoCard = ({ videoData }) => {
                   )}
                </span>
                <span>
-                  <MdOutlineWatchLater className="card-icon" />
+                  {isPresentInData(watchlaterVideos, videoData._id) &&
+                  authState.isLoggedIn ? (
+                     <MdWatchLater
+                        title="remove from watchlater"
+                        className="card-icon"
+                        onClick={() =>
+                           authState.isLoggedIn
+                              ? removeFromWatchlater(videoData)
+                              : navigate("/login")
+                        }
+                     />
+                  ) : (
+                     <MdOutlineWatchLater
+                        title="add to watchlater"
+                        className="card-icon"
+                        onClick={() =>
+                           authState.isLoggedIn
+                              ? addToWatchlater(videoData)
+                              : navigate("/login")
+                        }
+                     />
+                  )}
                </span>
                <span>
                   <MdPlaylistAdd className="card-icon" />
