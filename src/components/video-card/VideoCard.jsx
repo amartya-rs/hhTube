@@ -1,9 +1,8 @@
 import "./video-card.css";
 import { MdOutlineWatchLater, MdPlaylistAdd } from "react-icons/md";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
-import { useLike } from "../../context/like-context";
+import { useLike, useAuth } from "../../context";
 import { isPresentInData } from "../../utils/isPresentInData";
-import { useAuth } from "../../context/auth-context";
 import { useNavigate } from "react-router-dom";
 
 const VideoCard = ({ videoData }) => {

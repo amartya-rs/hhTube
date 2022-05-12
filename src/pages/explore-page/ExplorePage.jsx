@@ -1,5 +1,5 @@
 import { VideoCard } from "../../components/index";
-import { useVideo } from "../../context/video-context";
+import { useVideo } from "../../context";
 import "./explore-page.css";
 
 const ExplorePage = () => {

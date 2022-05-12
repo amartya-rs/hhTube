@@ -1,4 +1,4 @@
-import { useLike } from "../../context/like-context";
+import { useLike } from "../../context";
 import { VideoCard } from "../../components";
 
 const LikedVideoPage = () => {

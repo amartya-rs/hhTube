@@ -1,7 +1,7 @@
 import "./home-page.css";
 import { banner } from "../../assets";
 import { CategoryCard } from "../../components/index";
-import { useVideo } from "../../context/video-context";
+import { useVideo } from "../../context";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
