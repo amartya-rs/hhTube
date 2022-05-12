@@ -16,3 +16,8 @@
    flex-wrap: wrap;
    gap: 1rem;
 }
+
+.no-video-msg {
+   color: var(--GREY);
+   text-align: center;
+}
