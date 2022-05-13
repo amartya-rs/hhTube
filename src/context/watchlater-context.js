@@ -2,18 +2,19 @@ import { createContext, useContext, useEffect } from "react";
 import { useAxios } from "../utils/useAxios";
 import { useAuth } from "./auth-context";
 
-const LikeContext = createContext();
+const WatchlaterContext = createContext();
 
-const LikeProvider = ({ children }) => {
+const WatchlaterProvider = ({ children }) => {
    const { authState } = useAuth();
-   const { response: likedVideos, apiCall: likeVideoOperation } = useAxios();
+   const { response: watchlaterVideos, apiCall: watchlaterOperation } =
+      useAxios();
 
-   //fetching liked videos
+   //fetching watchlater videos
    useEffect(() => {
       if (authState.isLoggedIn) {
-         likeVideoOperation("likes", {
+         watchlaterOperation("watchlater", {
             method: "get",
-            url: "/api/user/likes",
+            url: "/api/user/watchlater",
             headers: {
                accept: "*/*",
                authorization: localStorage.getItem("token"),
@@ -23,11 +24,11 @@ const LikeProvider = ({ children }) => {
       // eslint-disable-next-line
    }, [authState.isLoggedIn]);
 
-   //add a video to liked videos
-   const addToLike = (video) => {
-      likeVideoOperation("likes", {
+   //add a video to watchlater videos
+   const addToWatchlater = (video) => {
+      watchlaterOperation("watchlater", {
          method: "post",
-         url: "/api/user/likes",
+         url: "/api/user/watchlater",
          headers: {
             accept: "*/*",
             authorization: localStorage.getItem("token"),
@@ -36,31 +37,30 @@ const LikeProvider = ({ children }) => {
       });
    };
 
-   //remove a video from liked videos
-   const removeFromLike = (video) => {
-      likeVideoOperation("likes", {
+   //remove a video from watchlater videos
+   const removeFromWatchlater = (video) => {
+      watchlaterOperation("watchlater", {
          method: "delete",
-         url: `/api/user/likes/${video._id}`,
+         url: `/api/user/watchlater/${video._id}`,
          headers: {
             accept: "*/*",
             authorization: localStorage.getItem("token"),
          },
       });
    };
-
    return (
-      <LikeContext.Provider
+      <WatchlaterContext.Provider
          value={{
-            likedVideos,
-            addToLike,
-            removeFromLike,
+            watchlaterVideos,
+            addToWatchlater,
+            removeFromWatchlater,
          }}
       >
          {children}
-      </LikeContext.Provider>
+      </WatchlaterContext.Provider>
    );
 };
 
-const useLike = () => useContext(LikeContext);
+const useWatchlater = () => useContext(WatchlaterContext);
 
-export { LikeProvider, useLike };
+export { WatchlaterProvider, useWatchlater };
