@@ -64,3 +64,9 @@
    height: 24px;
    width: 24px;
 }
+
+.video-card .icon-wrapper .delete-icon {
+   position: absolute;
+   top: -6.5rem;
+   right: 10px;
+}

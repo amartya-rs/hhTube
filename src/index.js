@@ -9,6 +9,7 @@ import {
    AuthProvider,
    LikeProvider,
    WatchlaterProvider,
+   HistoryProvider,
 } from "./context/index";
 
 // Call make Server
@@ -19,15 +20,17 @@ root.render(
    <React.StrictMode>
       <BrowserRouter>
          <AuthProvider>
-            <WatchlaterProvider>
-               <LikeProvider>
-                  <VideoProvider>
-                     <IconProvider>
-                        <App />
-                     </IconProvider>
-                  </VideoProvider>
-               </LikeProvider>
-            </WatchlaterProvider>
+            <HistoryProvider>
+               <WatchlaterProvider>
+                  <LikeProvider>
+                     <VideoProvider>
+                        <IconProvider>
+                           <App />
+                        </IconProvider>
+                     </VideoProvider>
+                  </LikeProvider>
+               </WatchlaterProvider>
+            </HistoryProvider>
          </AuthProvider>
       </BrowserRouter>
    </React.StrictMode>
