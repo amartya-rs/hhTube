@@ -30,6 +30,24 @@ const Sidebar = () => {
                <span>Explore</span>
             </li>
             <li
+               onClick={() => navigate("/playlist")}
+               className={
+                  pathname === "/playlist" ? "active font-semibold" : ""
+               }
+            >
+               <MdPlaylistPlay />
+               <span>Playlist</span>
+            </li>
+            <li
+               onClick={() => navigate("/likedvideos")}
+               className={
+                  pathname === "/likedvideos" ? "active font-semibold" : ""
+               }
+            >
+               <AiOutlineLike />
+               <span>Liked Videos</span>
+            </li>
+            <li
                onClick={() => navigate("/watchlater")}
                className={
                   pathname === "/watchlater" ? "active font-semibold" : ""
@@ -44,24 +62,6 @@ const Sidebar = () => {
             >
                <MdOutlineHistory />
                <span>History</span>
-            </li>
-            <li
-               onClick={() => navigate("/likedvideos")}
-               className={
-                  pathname === "/likedvideos" ? "active font-semibold" : ""
-               }
-            >
-               <AiOutlineLike />
-               <span>Liked Videos</span>
-            </li>
-            <li
-               onClick={() => navigate("/playlist")}
-               className={
-                  pathname === "/playlist" ? "active font-semibold" : ""
-               }
-            >
-               <MdPlaylistPlay />
-               <span>Playlist</span>
             </li>
          </ul>
       </aside>
