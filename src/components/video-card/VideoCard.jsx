@@ -3,21 +3,24 @@ import {
    MdOutlineWatchLater,
    MdPlaylistAdd,
    MdWatchLater,
+   MdDeleteForever,
 } from "react-icons/md";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
-import { useLike, useAuth, useWatchlater } from "../../context";
+import { useLike, useAuth, useWatchlater, useHistory } from "../../context";
 import { isPresentInData } from "../../utils/isPresentInData";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const VideoCard = ({ videoData }) => {
+   const { authState } = useAuth();
+   const navigate = useNavigate();
    const { likedVideos, addToLike, removeFromLike } = useLike();
    const { watchlaterVideos, addToWatchlater, removeFromWatchlater } =
       useWatchlater();
-   const { authState } = useAuth();
-   const navigate = useNavigate();
+   const { addToHistory, removeFromHistory } = useHistory();
+   const { pathname } = useLocation();
 
    return (
-      <div className="video-card">
+      <div className="video-card" onClick={() => addToHistory(videoData)}>
          <img
             src={`http://img.youtube.com/vi/${videoData._id}/maxresdefault.jpg`}
             alt="video thumbnail"
@@ -30,27 +33,41 @@ const VideoCard = ({ videoData }) => {
                alt="channel thumbnail"
             ></img>
             <div className="icon-wrapper">
+               {pathname === "/history" && (
+                  <span className="delete-icon">
+                     <MdDeleteForever
+                        title="remove from history"
+                        color="rgb(215, 50, 50)"
+                        onClick={(e) => {
+                           e.stopPropagation();
+                           removeFromHistory(videoData);
+                        }}
+                     />
+                  </span>
+               )}
                <span>
                   {isPresentInData(likedVideos, videoData._id) &&
                   authState.isLoggedIn ? (
                      <AiFillLike
                         title="unlike video"
                         className="card-icon"
-                        onClick={() =>
+                        onClick={(e) => {
+                           e.stopPropagation();
                            authState.isLoggedIn
                               ? removeFromLike(videoData)
-                              : navigate("/login")
-                        }
+                              : navigate("/login");
+                        }}
                      />
                   ) : (
                      <AiOutlineLike
                         title="like video"
                         className="card-icon"
-                        onClick={() =>
+                        onClick={(e) => {
+                           e.stopPropagation();
                            authState.isLoggedIn
                               ? addToLike(videoData)
-                              : navigate("/login")
-                        }
+                              : navigate("/login");
+                        }}
                      />
                   )}
                </span>
@@ -60,21 +77,23 @@ const VideoCard = ({ videoData }) => {
                      <MdWatchLater
                         title="remove from watchlater"
                         className="card-icon"
-                        onClick={() =>
+                        onClick={(e) => {
+                           e.stopPropagation();
                            authState.isLoggedIn
                               ? removeFromWatchlater(videoData)
-                              : navigate("/login")
-                        }
+                              : navigate("/login");
+                        }}
                      />
                   ) : (
                      <MdOutlineWatchLater
                         title="add to watchlater"
                         className="card-icon"
-                        onClick={() =>
+                        onClick={(e) => {
+                           e.stopPropagation();
                            authState.isLoggedIn
                               ? addToWatchlater(videoData)
-                              : navigate("/login")
-                        }
+                              : navigate("/login");
+                        }}
                      />
                   )}
                </span>

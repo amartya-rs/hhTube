@@ -6,6 +6,7 @@ import {
    ExplorePage,
    LikedVideoPage,
    WatchlaterPage,
+   HistoryPage,
 } from "./pages/index";
 import {
    Footer,
@@ -34,6 +35,7 @@ const App = () => {
             <Route element={<PrivateRoute />}>
                <Route path="/likedvideos" element={<LikedVideoPage />} />
                <Route path="/watchlater" element={<WatchlaterPage />} />
+               <Route path="/history" element={<HistoryPage />} />
             </Route>
          </Routes>
          <Footer />
