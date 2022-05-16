@@ -10,6 +10,7 @@ import {
    LoginPage,
    SignUpPage,
    PlaylistPage,
+   Page404,
 } from "./pages/index";
 import {
    Footer,
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/mockman" element={<Mockman />} />
+            <Route path="*" element={<Page404 />} />
             {/*restricted routes*/}
             <Route element={<RestrictedRoute />}>
                <Route path="/login" element={<LoginPage />} />
