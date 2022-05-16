@@ -1,0 +1,14 @@
+.playlist-page {
+   padding: 0 2rem;
+
+   display: grid;
+   grid-template-columns: 13.5rem 1fr;
+}
+
+.playlist-items {
+   margin-top: 10px;
+
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
