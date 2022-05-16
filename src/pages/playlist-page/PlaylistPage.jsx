@@ -73,7 +73,7 @@ const PlaylistPage = () => {
          <div>
             {playlists.length !== 0 ? (
                <div>
-                  <h5 className="ml-3">
+                  <h5 className="ml-3 mb-2">
                      {
                         playlists?.filter(
                            (ele) => ele._id === playlistToShowId
