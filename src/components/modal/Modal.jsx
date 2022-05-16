@@ -22,25 +22,23 @@ const Modal = () => {
             {pathname === "/playlist" ? (
                <h5>Create new playlist</h5>
             ) : (
-               <h5>Save to...</h5>
-            )}
-            {pathname === "/playlist" ? (
-               ""
-            ) : (
-               <div className="playlist-wrapper">
-                  {playlists?.map((ele) => (
-                     <li className="playlist-items" key={ele._id}>
-                        <button
-                           className="button primary h6 font-medium"
-                           onClick={() =>
-                              addVideoToPlaylist(ele._id, videoToAdd)
-                           }
-                        >
-                           {ele.title}
-                        </button>
-                     </li>
-                  ))}
-               </div>
+               <>
+                  <h5>Save to...</h5>
+                  <div className="playlist-wrapper">
+                     {playlists?.map((ele) => (
+                        <li className="playlist-items" key={ele._id}>
+                           <button
+                              className="button primary h6 font-medium"
+                              onClick={() =>
+                                 addVideoToPlaylist(ele._id, videoToAdd)
+                              }
+                           >
+                              {ele.title}
+                           </button>
+                        </li>
+                     ))}
+                  </div>
+               </>
             )}
             <button
                className="corner-button"
