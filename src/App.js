@@ -7,6 +7,9 @@ import {
    LikedVideoPage,
    WatchlaterPage,
    HistoryPage,
+   LoginPage,
+   SignUpPage,
+   PlaylistPage,
 } from "./pages/index";
 import {
    Footer,
@@ -14,8 +17,8 @@ import {
    TopNav,
    RestrictedRoute,
    PrivateRoute,
+   Modal,
 } from "./components";
-import { LoginPage, SignUpPage } from "./pages/index";
 
 const App = () => {
    return (
@@ -23,6 +26,7 @@ const App = () => {
          <TopNav />
          <Sidebar />
          <Routes>
+            {/*public routes*/}
             <Route path="/" element={<HomePage />} />
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/mockman" element={<Mockman />} />
@@ -36,9 +40,12 @@ const App = () => {
                <Route path="/likedvideos" element={<LikedVideoPage />} />
                <Route path="/watchlater" element={<WatchlaterPage />} />
                <Route path="/history" element={<HistoryPage />} />
+               <Route path="/playlist" element={<PlaylistPage />} />
             </Route>
          </Routes>
          <Footer />
+
+         <Modal />
       </div>
    );
 };

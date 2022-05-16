@@ -6,18 +6,30 @@ import {
    MdDeleteForever,
 } from "react-icons/md";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
-import { useLike, useAuth, useWatchlater, useHistory } from "../../context";
+import {
+   useLike,
+   useAuth,
+   useWatchlater,
+   useHistory,
+   usePlaylist,
+} from "../../context";
 import { isPresentInData } from "../../utils/isPresentInData";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const VideoCard = ({ videoData }) => {
    const { authState } = useAuth();
    const navigate = useNavigate();
+   const { pathname } = useLocation();
    const { likedVideos, addToLike, removeFromLike } = useLike();
    const { watchlaterVideos, addToWatchlater, removeFromWatchlater } =
       useWatchlater();
    const { addToHistory, removeFromHistory } = useHistory();
-   const { pathname } = useLocation();
+   const {
+      toggleModal,
+      setVideoToAdd,
+      removeVideoFromPlaylist,
+      playlistToShowId,
+   } = usePlaylist();
 
    return (
       <div className="video-card" onClick={() => addToHistory(videoData)}>
@@ -41,6 +53,21 @@ const VideoCard = ({ videoData }) => {
                         onClick={(e) => {
                            e.stopPropagation();
                            removeFromHistory(videoData);
+                        }}
+                     />
+                  </span>
+               )}
+               {pathname === "/playlist" && (
+                  <span className="delete-icon">
+                     <MdDeleteForever
+                        title="remove from playlist"
+                        color="rgb(215, 50, 50)"
+                        onClick={(e) => {
+                           e.stopPropagation();
+                           removeVideoFromPlaylist(
+                              playlistToShowId,
+                              videoData._id
+                           );
                         }}
                      />
                   </span>
@@ -98,7 +125,21 @@ const VideoCard = ({ videoData }) => {
                   )}
                </span>
                <span>
-                  <MdPlaylistAdd className="card-icon" />
+                  <MdPlaylistAdd
+                     title="add to playlist"
+                     className="card-icon"
+                     onClick={(e) => {
+                        if (pathname !== "/playlist") {
+                           e.stopPropagation();
+                           if (authState.isLoggedIn) {
+                              setVideoToAdd(videoData);
+                              toggleModal();
+                           } else {
+                              navigate("/login");
+                           }
+                        }
+                     }}
+                  />
                </span>
             </div>
             <span className="time-badge">{videoData.videoLength}</span>

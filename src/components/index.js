@@ -5,3 +5,4 @@ export { CategoryCard } from "../components/category-card/CategoryCard";
 export { VideoCard } from "../components/video-card/VideoCard";
 export { PrivateRoute } from "../components/auth/PrivateRoute";
 export { RestrictedRoute } from "../components/auth/RestrictedRoute";
+export { Modal } from "../components/modal/Modal";
