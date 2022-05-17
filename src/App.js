@@ -1,6 +1,8 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Mockman from "mockman-js";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
    HomePage,
    ExplorePage,
@@ -11,6 +13,7 @@ import {
    SignUpPage,
    PlaylistPage,
    Page404,
+   SingleVideoPage,
 } from "./pages/index";
 import {
    Footer,
@@ -30,6 +33,7 @@ const App = () => {
             {/*public routes*/}
             <Route path="/" element={<HomePage />} />
             <Route path="/explore" element={<ExplorePage />} />
+            <Route path="/video/:videoId" element={<SingleVideoPage />} />
             <Route path="/mockman" element={<Mockman />} />
             <Route path="*" element={<Page404 />} />
             {/*restricted routes*/}
@@ -48,6 +52,7 @@ const App = () => {
          <Footer />
 
          <Modal />
+         <ToastContainer theme="colored" />
       </div>
    );
 };

@@ -32,7 +32,13 @@ const VideoCard = ({ videoData }) => {
    } = usePlaylist();
 
    return (
-      <div className="video-card" onClick={() => addToHistory(videoData)}>
+      <div
+         className="video-card"
+         onClick={() => {
+            addToHistory(videoData);
+            navigate(`/video/${videoData._id}`);
+         }}
+      >
          <img
             src={`http://img.youtube.com/vi/${videoData._id}/maxresdefault.jpg`}
             alt="video thumbnail"
