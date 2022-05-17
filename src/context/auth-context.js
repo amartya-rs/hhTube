@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 import { authReducer, initialState } from "../reducer/auth-reducer";
 import { useNavigate } from "react-router-dom";
 import { useAxios } from "../utils/useAxios";
+import { toastSuccess, toastError } from "../utils/useToast";
 
 const AuthContext = createContext();
 
@@ -36,12 +37,10 @@ const AuthProvider = ({ children }) => {
             payload: loginUserData.foundUser,
          });
          navigate("/");
+         toastSuccess("Logged in successfully");
       }
       if (loginError) {
-         authDispatch({
-            type: "SET_ERROR",
-            payload: "Credentials not found",
-         });
+         toastError(loginError[0]);
       }
       // eslint-disable-next-line
    }, [loginUserData, loginError]);
@@ -54,12 +53,10 @@ const AuthProvider = ({ children }) => {
             payload: signupUserData.createdUser,
          });
          navigate("/");
+         toastSuccess("Signed up successfully");
       }
       if (signupError) {
-         authDispatch({
-            type: "SET_ERROR",
-            payload: "Some error occured, please try again",
-         });
+         toastError(loginError[0]);
       }
       // eslint-disable-next-line
    }, [signupUserData, signupError]);
@@ -192,6 +189,7 @@ const AuthProvider = ({ children }) => {
    const logoutUser = () => {
       localStorage.removeItem("token");
       authDispatch({ type: "CLEAR_FIELDS" });
+      toastSuccess("Logged out successfully");
    };
 
    return (

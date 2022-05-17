@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect } from "react";
 import { useAxios } from "../utils/useAxios";
 import { useAuth } from "./auth-context";
+import { toastSuccess, toastInfo } from "../utils/useToast";
 
 const WatchlaterContext = createContext();
 
@@ -35,6 +36,7 @@ const WatchlaterProvider = ({ children }) => {
          },
          data: { video: video },
       });
+      toastSuccess("Added to watchlater");
    };
 
    //remove a video from watchlater videos
@@ -47,6 +49,7 @@ const WatchlaterProvider = ({ children }) => {
             authorization: localStorage.getItem("token"),
          },
       });
+      toastInfo("Removed from watchlater");
    };
    return (
       <WatchlaterContext.Provider

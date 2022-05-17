@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect } from "react";
 import { useAxios } from "../utils/useAxios";
 import { useAuth } from "./auth-context";
+import { toastInfo, toastError } from "../utils/useToast";
 
 const HistoryContext = createContext();
 
@@ -46,18 +47,24 @@ const HistoryProvider = ({ children }) => {
             authorization: localStorage.getItem("token"),
          },
       });
+      toastInfo("Removed video from history");
    };
 
    //remove all videos from history
    const removeAllFromHistory = () => {
-      historyOperation("history", {
-         method: "delete",
-         url: `/api/user/history/all`,
-         headers: {
-            accept: "*/*",
-            authorization: localStorage.getItem("token"),
-         },
-      });
+      if (historyVideos.length !== 0) {
+         historyOperation("history", {
+            method: "delete",
+            url: `/api/user/history/all`,
+            headers: {
+               accept: "*/*",
+               authorization: localStorage.getItem("token"),
+            },
+         });
+         toastInfo("Cleared history");
+      } else {
+         toastError("Nothing to clear in history");
+      }
    };
 
    return (
