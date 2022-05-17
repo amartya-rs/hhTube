@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAxios } from "../utils/useAxios";
 import { useAuth } from "./auth-context";
+import { toastSuccess, toastInfo, toastError } from "../utils/useToast";
 
 const PlaylistContext = createContext();
 
@@ -11,8 +12,16 @@ const PlaylistProvider = ({ children }) => {
       apiCall: playlistOperation,
       setResponse: updatePlaylist,
    } = useAxios();
-   const { response: singlePlaylist, apiCall: singlePlaylistOperation } =
-      useAxios();
+
+   const {
+      response: singlePlaylist,
+      apiCall: singlePlaylistOperation,
+      setResponse: resetSinglePlaylist,
+      error: singlePlaylistError,
+      setError: resetError,
+      status,
+   } = useAxios();
+
    const [modalIsOpen, setModalIsOpen] = useState(false);
    const [videoToAdd, setVideoToAdd] = useState("");
    const [playlistToShowId, setplaylistToShowId] = useState("");
@@ -26,16 +35,30 @@ const PlaylistProvider = ({ children }) => {
       setModalIsOpen((prev) => !prev);
    };
 
+   //show toast if status is 201
+   useEffect(() => {
+      if (singlePlaylist !== undefined && singlePlaylistError === "") {
+         if (status === 201) {
+            toastSuccess("Video added to playlist");
+         }
+      }
+   }, [singlePlaylist, status, singlePlaylistError]);
+
    //updating playlists after adding a video to individual/single playlist
    useEffect(() => {
-      if (singlePlaylist !== undefined) {
+      if (singlePlaylistError !== "") {
+         toastError(singlePlaylistError[0]);
+         resetError("");
+      }
+      if (singlePlaylist !== undefined && singlePlaylistError === "") {
          const updatedPlaylist = playlists.map((ele) =>
             ele._id === singlePlaylist._id ? singlePlaylist : ele
          );
          updatePlaylist(updatedPlaylist);
+         resetSinglePlaylist(undefined);
       }
       // eslint-disable-next-line
-   }, [singlePlaylist]);
+   }, [singlePlaylist, singlePlaylistError]);
 
    //fetching playlists
    useEffect(() => {
@@ -68,6 +91,9 @@ const PlaylistProvider = ({ children }) => {
             title: "",
             description: "",
          });
+         toastSuccess("Playlist created");
+      } else {
+         toastError("Enter playlist details");
       }
    };
 
@@ -81,6 +107,7 @@ const PlaylistProvider = ({ children }) => {
             authorization: localStorage.getItem("token"),
          },
       });
+      toastInfo("Playlist deleted");
    };
 
    //add a video to playlist
@@ -106,6 +133,7 @@ const PlaylistProvider = ({ children }) => {
             authorization: localStorage.getItem("token"),
          },
       });
+      toastInfo("Video removed from playlist");
    };
 
    return (

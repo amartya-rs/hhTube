@@ -32,6 +32,7 @@ const VideoProvider = ({ children }) => {
    return (
       <VideoContext.Provider
          value={{
+            videoData,
             categories,
             videosToDisplay,
             currentCategory,

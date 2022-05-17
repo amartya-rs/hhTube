@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect } from "react";
 import { useAxios } from "../utils/useAxios";
 import { useAuth } from "./auth-context";
+import { toastSuccess, toastInfo } from "../utils/useToast";
 
 const LikeContext = createContext();
 
@@ -34,6 +35,7 @@ const LikeProvider = ({ children }) => {
          },
          data: { video: video },
       });
+      toastSuccess("Added to liked videos");
    };
 
    //remove a video from liked videos
@@ -46,6 +48,7 @@ const LikeProvider = ({ children }) => {
             authorization: localStorage.getItem("token"),
          },
       });
+      toastInfo("Removed from liked videos");
    };
 
    return (
