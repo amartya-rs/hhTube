@@ -11,6 +11,7 @@ import {
    WatchlaterProvider,
    HistoryProvider,
    PlaylistProvider,
+   ThemeProvider,
 } from "./context/index";
 
 // Call make Server
@@ -21,19 +22,21 @@ root.render(
    <React.StrictMode>
       <BrowserRouter>
          <AuthProvider>
-            <PlaylistProvider>
-               <HistoryProvider>
-                  <WatchlaterProvider>
-                     <LikeProvider>
-                        <VideoProvider>
-                           <IconProvider>
-                              <App />
-                           </IconProvider>
-                        </VideoProvider>
-                     </LikeProvider>
-                  </WatchlaterProvider>
-               </HistoryProvider>
-            </PlaylistProvider>
+            <ThemeProvider>
+               <PlaylistProvider>
+                  <HistoryProvider>
+                     <WatchlaterProvider>
+                        <LikeProvider>
+                           <VideoProvider>
+                              <IconProvider>
+                                 <App />
+                              </IconProvider>
+                           </VideoProvider>
+                        </LikeProvider>
+                     </WatchlaterProvider>
+                  </HistoryProvider>
+               </PlaylistProvider>
+            </ThemeProvider>
          </AuthProvider>
       </BrowserRouter>
    </React.StrictMode>
