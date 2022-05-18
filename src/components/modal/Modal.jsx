@@ -2,6 +2,7 @@ import "./modal.css";
 import { MdOutlineClose } from "react-icons/md";
 import { usePlaylist } from "../../context/playlist-context";
 import { useLocation } from "react-router-dom";
+import { useTheme } from "../../context";
 
 const Modal = () => {
    const { pathname } = useLocation();
@@ -15,10 +16,11 @@ const Modal = () => {
       videoToAdd,
       addVideoToPlaylist,
    } = usePlaylist();
+   const { theme } = useTheme();
 
    return (
       <div className={`modal-container ${!modalIsOpen ? "hide-modal" : ""}`}>
-         <div className="modal">
+         <div className={`modal ${theme === "dark" ? "dark-mode-bg" : ""}`}>
             {pathname === "/playlist" ? (
                <h5>Create new playlist</h5>
             ) : (
@@ -85,7 +87,7 @@ const Modal = () => {
                </label>
             </div>
             <div className="modal-footer">
-               <button className="button secondary" onClick={createNewPlaylist}>
+               <button className="button primary" onClick={createNewPlaylist}>
                   CREATE PLAYLIST
                </button>
             </div>

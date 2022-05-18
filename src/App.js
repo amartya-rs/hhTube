@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Mockman from "mockman-js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTheme } from "./context";
 import {
    HomePage,
    ExplorePage,
@@ -25,8 +26,10 @@ import {
 } from "./components";
 
 const App = () => {
+   const { theme } = useTheme();
+
    return (
-      <div className="App">
+      <div className={`App ${theme === "dark" ? "dark-theme" : ""}`}>
          <TopNav />
          <Sidebar />
          <Routes>
@@ -52,7 +55,7 @@ const App = () => {
          <Footer />
 
          <Modal />
-         <ToastContainer theme="colored" />
+         <ToastContainer theme={theme === "dark" ? "dark" : "colored"} />
       </div>
    );
 };
