@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context";
+import { useAuth, useTheme } from "../../context";
 import "./login-page.css";
 
 const LoginPage = () => {
@@ -10,10 +10,13 @@ const LoginPage = () => {
       setGuestCredentials,
       checkLoginCredentials,
    } = useAuth();
+   const { theme } = useTheme();
 
    return (
       <div className="login-page">
-         <form className="auth-form">
+         <form
+            className={`auth-form ${theme === "dark" ? "dark-mode-bg" : ""}`}
+         >
             <div className="form-header">
                <h5>LOGIN</h5>
                <p className="p-sm">Please enter your email and password.</p>
@@ -66,7 +69,12 @@ const LoginPage = () => {
             </button>
             <div className="form-footer">
                <p className="p-sm">Not a user yet?</p>
-               <Link to="/signup">Sign Up</Link>
+               <Link
+                  className={theme === "dark" ? "dark-mode-link" : ""}
+                  to="/signup"
+               >
+                  Sign Up
+               </Link>
             </div>
             <span className="helper font-medium" onClick={setGuestCredentials}>
                Use Guest Credentials

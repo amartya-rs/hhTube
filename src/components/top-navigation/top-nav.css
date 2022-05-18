@@ -3,4 +3,15 @@
    padding-right: 2rem;
 
    grid-area: topnav;
+   box-shadow: none;
+}
+
+.nav-icon-wrapper {
+   display: flex;
+   align-items: center;
+   gap: 2.25rem;
+}
+
+.main-nav svg {
+   cursor: pointer;
 }

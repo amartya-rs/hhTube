@@ -7,16 +7,24 @@ import {
 } from "react-icons/md";
 import { AiOutlineLike, AiOutlineHome } from "react-icons/ai";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTheme } from "../../context";
 
 const Sidebar = () => {
    const navigate = useNavigate();
    const { pathname } = useLocation();
+   const { theme } = useTheme();
 
    return (
       <aside className="pl-4 mt-1">
          <ul className="side-nav font-medium">
             <li
-               className={pathname === "/" ? "active font-semibold" : ""}
+               className={
+                  pathname === "/"
+                     ? `${
+                          theme === "dark" ? "dark-mode-active" : "active"
+                       } font-semibold`
+                     : ""
+               }
                onClick={() => navigate("/")}
             >
                <AiOutlineHome />
@@ -24,7 +32,13 @@ const Sidebar = () => {
             </li>
             <li
                onClick={() => navigate("/explore")}
-               className={pathname === "/explore" ? "active font-semibold" : ""}
+               className={
+                  pathname === "/explore"
+                     ? `${
+                          theme === "dark" ? "dark-mode-active" : "active"
+                       } font-semibold`
+                     : ""
+               }
             >
                <MdOutlineExplore />
                <span>Explore</span>
@@ -32,7 +46,11 @@ const Sidebar = () => {
             <li
                onClick={() => navigate("/playlist")}
                className={
-                  pathname === "/playlist" ? "active font-semibold" : ""
+                  pathname === "/playlist"
+                     ? `${
+                          theme === "dark" ? "dark-mode-active" : "active"
+                       } font-semibold`
+                     : ""
                }
             >
                <MdPlaylistPlay />
@@ -41,7 +59,11 @@ const Sidebar = () => {
             <li
                onClick={() => navigate("/likedvideos")}
                className={
-                  pathname === "/likedvideos" ? "active font-semibold" : ""
+                  pathname === "/likedvideos"
+                     ? `${
+                          theme === "dark" ? "dark-mode-active" : "active"
+                       } font-semibold`
+                     : ""
                }
             >
                <AiOutlineLike />
@@ -50,7 +72,11 @@ const Sidebar = () => {
             <li
                onClick={() => navigate("/watchlater")}
                className={
-                  pathname === "/watchlater" ? "active font-semibold" : ""
+                  pathname === "/watchlater"
+                     ? `${
+                          theme === "dark" ? "dark-mode-active" : "active"
+                       } font-semibold`
+                     : ""
                }
             >
                <MdOutlineWatchLater />
@@ -58,7 +84,13 @@ const Sidebar = () => {
             </li>
             <li
                onClick={() => navigate("/history")}
-               className={pathname === "/history" ? "active font-semibold" : ""}
+               className={
+                  pathname === "/history"
+                     ? `${
+                          theme === "dark" ? "dark-mode-active" : "active"
+                       } font-semibold`
+                     : ""
+               }
             >
                <MdOutlineHistory />
                <span>History</span>

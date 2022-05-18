@@ -27,3 +27,12 @@
 .login-page .auth-form {
    gap: 1.25rem;
 }
+
+.dark-mode-bg {
+   background-color: var(--SECONDARY-COLOR);
+   border: none;
+}
+
+.dark-mode-link {
+   color: var(--WHITE);
+}

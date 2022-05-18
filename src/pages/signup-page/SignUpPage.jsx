@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context";
+import { useAuth, useTheme } from "../../context";
 import "./signup-page.css";
 
 const SignUpPage = () => {
@@ -9,10 +9,13 @@ const SignUpPage = () => {
       signupHandler,
       checkSignupCredentials,
    } = useAuth();
+   const { theme } = useTheme();
 
    return (
       <div className="signup-page">
-         <form className="auth-form">
+         <form
+            className={`auth-form ${theme === "dark" ? "dark-mode-bg" : ""}`}
+         >
             <div className="form-header">
                <h5>SIGNUP</h5>
                <p className="p-sm">Please fill in your information below.</p>
@@ -83,7 +86,12 @@ const SignUpPage = () => {
             </button>
             <div className="form-footer">
                <p className="p-sm">Already a user?</p>
-               <Link to="/login">Login</Link>
+               <Link
+                  className={theme === "dark" ? "dark-mode-link" : ""}
+                  to="/login"
+               >
+                  Login
+               </Link>
             </div>
          </form>
       </div>

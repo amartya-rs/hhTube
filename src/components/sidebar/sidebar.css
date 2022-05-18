@@ -28,3 +28,7 @@ aside {
 .active {
    background-color: rgba(0, 0, 0, 0.2);
 }
+
+.dark-mode-active {
+   background-color: rgba(221, 186, 217, 0.21);
+}
