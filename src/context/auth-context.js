@@ -3,6 +3,7 @@ import { authReducer, initialState } from "../reducer/auth-reducer";
 import { useNavigate } from "react-router-dom";
 import { useAxios } from "../utils/useAxios";
 import { toastSuccess, toastError } from "../utils/useToast";
+import { getLocalData, setLocalData } from "../utils";
 
 const AuthContext = createContext();
 
@@ -14,24 +15,31 @@ const AuthProvider = ({ children }) => {
       response: loginUserData,
       error: loginError,
       apiCall: setLoginResponse,
+      setError: resetLoginError,
    } = useAxios();
 
    const {
       response: signupUserData,
       error: signupError,
       apiCall: setSignupResponse,
+      setError: resetSignupError,
    } = useAxios();
 
    //if token is present in localstorage then show user logged in
    useEffect(() => {
       if (localStorage.getItem("token") !== null) {
-         authDispatch({ type: "TOGGLE_LOGIN", payload: true });
+         authDispatch({
+            type: "SET_USER_CREDENTIALS",
+            payload: getLocalData("user"),
+         });
       }
+      // eslint-disable-next-line
    }, []);
 
    useEffect(() => {
-      if (loginUserData !== undefined) {
-         localStorage.setItem("token", loginUserData.encodedToken);
+      if (loginUserData !== undefined && !loginError) {
+         setLocalData("token", loginUserData.encodedToken);
+         setLocalData("user", loginUserData.foundUser);
          authDispatch({
             type: "SET_USER_CREDENTIALS",
             payload: loginUserData.foundUser,
@@ -41,13 +49,15 @@ const AuthProvider = ({ children }) => {
       }
       if (loginError) {
          toastError(loginError[0]);
+         resetLoginError("");
       }
       // eslint-disable-next-line
    }, [loginUserData, loginError]);
 
    useEffect(() => {
-      if (signupUserData !== undefined) {
-         localStorage.setItem("token", signupUserData.encodedToken);
+      if (signupUserData !== undefined && !signupError) {
+         setLocalData("token", signupUserData.encodedToken);
+         setLocalData("user", signupUserData.createdUser);
          authDispatch({
             type: "SET_USER_CREDENTIALS",
             payload: signupUserData.createdUser,
@@ -56,7 +66,8 @@ const AuthProvider = ({ children }) => {
          toastSuccess("Signed up successfully");
       }
       if (signupError) {
-         toastError(loginError[0]);
+         toastError(signupError[0]);
+         resetSignupError("");
       }
       // eslint-disable-next-line
    }, [signupUserData, signupError]);
@@ -188,6 +199,7 @@ const AuthProvider = ({ children }) => {
    //logging out user
    const logoutUser = () => {
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
       authDispatch({ type: "CLEAR_FIELDS" });
       toastSuccess("Logged out successfully");
    };
