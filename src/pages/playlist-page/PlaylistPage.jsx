@@ -71,7 +71,7 @@ const PlaylistPage = () => {
             </ul>
          </div>
          <div>
-            {playlists.length !== 0 ? (
+            {playlists?.length !== 0 ? (
                <div>
                   <h5 className="ml-3 mb-2">
                      {

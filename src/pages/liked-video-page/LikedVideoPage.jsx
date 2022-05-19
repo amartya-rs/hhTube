@@ -6,7 +6,7 @@ const LikedVideoPage = () => {
 
    return (
       <main className="page my-2">
-         {likedVideos.length !== 0 ? (
+         {likedVideos?.length !== 0 ? (
             <section className="video-section">
                {likedVideos?.map((ele) => (
                   <VideoCard key={ele._id} videoData={ele} />
