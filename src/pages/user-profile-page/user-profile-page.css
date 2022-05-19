@@ -1,0 +1,19 @@
+.user-details-wrapper {
+   height: 21rem;
+   aspect-ratio: 1/0.8;
+   border-radius: 10px;
+   background-color: var(--PRIMARY-BG);
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   gap: 0.9rem;
+}
+
+.user-details-wrapper .avatar-sm {
+   border: none;
+   height: 5rem;
+   width: 5rem;
+   margin-bottom: 4.25rem;
+}
