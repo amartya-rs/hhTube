@@ -15,3 +15,48 @@
 .main-nav svg {
    cursor: pointer;
 }
+
+.main-nav .avatar-sm {
+   border: none;
+   height: 2.15rem;
+   width: 2.15rem;
+   cursor: pointer;
+}
+
+.profile-wrapper {
+   height: 4rem;
+
+   display: flex;
+   align-items: center;
+}
+
+.profile-wrapper:hover .profile-hover-area {
+   visibility: visible;
+}
+
+.profile-hover-area {
+   height: max-content;
+   width: max-content;
+   padding: 1.5rem 2.75rem;
+   background-color: rgb(250, 218, 244);
+   border-radius: 10px;
+   visibility: hidden;
+
+   position: absolute;
+   right: 1.5rem;
+   top: 3.4rem;
+
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   z-index: 5;
+}
+
+.profile-hover-area > div {
+   cursor: pointer;
+
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   gap: 10px;
+}

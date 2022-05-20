@@ -3,6 +3,7 @@ import { authReducer, initialState } from "../reducer/auth-reducer";
 import { useNavigate } from "react-router-dom";
 import { useAxios } from "../utils/useAxios";
 import { toastSuccess, toastError } from "../utils/useToast";
+import { setLocalData } from "../utils";
 
 const AuthContext = createContext();
 
@@ -14,24 +15,61 @@ const AuthProvider = ({ children }) => {
       response: loginUserData,
       error: loginError,
       apiCall: setLoginResponse,
+      setError: resetLoginError,
    } = useAxios();
 
    const {
       response: signupUserData,
       error: signupError,
       apiCall: setSignupResponse,
+      setError: resetSignupError,
    } = useAxios();
 
-   //if token is present in localstorage then show user logged in
+   const {
+      response: verifiedUserData,
+      error: verifiedError,
+      apiCall: setVerifiedResponse,
+      setError: resetVerifiedError,
+   } = useAxios();
+
    useEffect(() => {
-      if (localStorage.getItem("token") !== null) {
-         authDispatch({ type: "TOGGLE_LOGIN", payload: true });
+      const token = localStorage.getItem("token");
+      const tokenIdentifier = localStorage.getItem("tokenIdentifier");
+
+      if (token && tokenIdentifier === "login") {
+         setVerifiedResponse(null, {
+            method: "post",
+            url: "/api/auth/verify",
+            headers: {
+               accept: "*/*",
+            },
+            data: {
+               encodedToken: token,
+            },
+         });
       }
+      // eslint-disable-next-line
    }, []);
 
    useEffect(() => {
-      if (loginUserData !== undefined) {
-         localStorage.setItem("token", loginUserData.encodedToken);
+      if (verifiedUserData !== undefined && !verifiedError) {
+         authDispatch({
+            type: "SET_USER_CREDENTIALS",
+            payload: verifiedUserData.user,
+         });
+         toastSuccess("Welcome back!");
+      }
+      if (verifiedError) {
+         toastError(verifiedError[0]);
+         resetVerifiedError("");
+      }
+      // eslint-disable-next-line
+   }, [verifiedUserData, verifiedError]);
+
+   useEffect(() => {
+      if (loginUserData !== undefined && !loginError) {
+         setLocalData("token", loginUserData.encodedToken);
+         setLocalData("tokenIdentifier", "login");
          authDispatch({
             type: "SET_USER_CREDENTIALS",
             payload: loginUserData.foundUser,
@@ -41,13 +79,15 @@ const AuthProvider = ({ children }) => {
       }
       if (loginError) {
          toastError(loginError[0]);
+         resetLoginError("");
       }
       // eslint-disable-next-line
    }, [loginUserData, loginError]);
 
    useEffect(() => {
-      if (signupUserData !== undefined) {
-         localStorage.setItem("token", signupUserData.encodedToken);
+      if (signupUserData !== undefined && !signupError) {
+         setLocalData("token", signupUserData.encodedToken);
+         setLocalData("tokenIdentifier", "signup");
          authDispatch({
             type: "SET_USER_CREDENTIALS",
             payload: signupUserData.createdUser,
@@ -56,7 +96,8 @@ const AuthProvider = ({ children }) => {
          toastSuccess("Signed up successfully");
       }
       if (signupError) {
-         toastError(loginError[0]);
+         toastError(signupError[0]);
+         resetSignupError("");
       }
       // eslint-disable-next-line
    }, [signupUserData, signupError]);
@@ -188,6 +229,7 @@ const AuthProvider = ({ children }) => {
    //logging out user
    const logoutUser = () => {
       localStorage.removeItem("token");
+      localStorage.removeItem("tokenIdentifier");
       authDispatch({ type: "CLEAR_FIELDS" });
       toastSuccess("Logged out successfully");
    };

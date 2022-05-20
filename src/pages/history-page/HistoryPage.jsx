@@ -9,7 +9,7 @@ const HistoryPage = () => {
          <button className="button primary mb-2" onClick={removeAllFromHistory}>
             CLEAR HISTORY
          </button>
-         {historyVideos.length !== 0 ? (
+         {historyVideos?.length !== 0 ? (
             <section className="video-section">
                {historyVideos?.map((ele) => (
                   <VideoCard key={ele._id} videoData={ele} />

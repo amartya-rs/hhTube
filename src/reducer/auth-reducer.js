@@ -1,11 +1,6 @@
 //reducer function
 const authReducer = (authState, { type, payload }) => {
    switch (type) {
-      case "TOGGLE_LOGIN":
-         return {
-            ...authState,
-            isLoggedIn: payload,
-         };
       case "SET_EMAIL":
          return {
             ...authState,
@@ -36,10 +31,10 @@ const authReducer = (authState, { type, payload }) => {
       case "SET_USER_CREDENTIALS":
          return {
             ...authState,
-            name: payload.name,
-            email: payload.email,
-            password: payload.password ?? "",
-            isLoggedIn: !authState.isLoggedIn,
+            name: `${payload?.name ?? ""} ${payload?.firstName ?? ""}`,
+            email: payload?.email,
+            password: payload?.password ?? "",
+            isLoggedIn: true,
          };
       case "CLEAR_FIELDS":
          return {
@@ -48,7 +43,7 @@ const authReducer = (authState, { type, payload }) => {
             email: "",
             password: "",
             error: "",
-            isLoggedIn: !authState.isLoggedIn,
+            isLoggedIn: false,
          };
       default:
          return authState;

@@ -8,3 +8,4 @@ export { HistoryPage } from "./history-page/HistoryPage";
 export { PlaylistPage } from "./playlist-page/PlaylistPage";
 export { Page404 } from "./page-404/Page404";
 export { SingleVideoPage } from "./single-video-page/SingleVideoPage";
+export { UserProfilePage } from "./user-profile-page/UserProfilePage";

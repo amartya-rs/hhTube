@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { BiUserCircle } from "react-icons/bi";
 import { BsMoonFill, BsSunFill } from "react-icons/bs";
-import { MdLogout } from "react-icons/md";
+import { FiUser, FiLogOut } from "react-icons/fi";
+import { user_profile } from "../../assets/index";
 import { useAuth, useTheme } from "../../context";
 import "./top-nav.css";
 
@@ -39,12 +40,27 @@ const TopNav = () => {
                   onClick={() => navigate("/login")}
                />
             ) : (
-               <MdLogout
-                  color="white"
-                  size="2rem"
-                  title="logout"
-                  onClick={() => logoutUser()}
-               />
+               <div className="profile-wrapper">
+                  <img
+                     className="avatar-circle avatar-sm"
+                     src={user_profile}
+                     alt="user profile"
+                  />
+                  <div
+                     className={`profile-hover-area ${
+                        theme === "dark" ? "dark-mode-bg" : ""
+                     }`}
+                  >
+                     <div onClick={() => navigate("/profile")}>
+                        <FiUser title="login" />
+                        <span className="font-medium">Profile</span>
+                     </div>
+                     <div onClick={() => logoutUser()}>
+                        <FiLogOut title="logout" />
+                        <span className="font-medium">Logout</span>
+                     </div>
+                  </div>
+               </div>
             )}
          </div>
       </nav>

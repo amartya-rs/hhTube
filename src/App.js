@@ -15,6 +15,7 @@ import {
    PlaylistPage,
    Page404,
    SingleVideoPage,
+   UserProfilePage,
 } from "./pages/index";
 import {
    Footer,
@@ -50,6 +51,7 @@ const App = () => {
                <Route path="/watchlater" element={<WatchlaterPage />} />
                <Route path="/history" element={<HistoryPage />} />
                <Route path="/playlist" element={<PlaylistPage />} />
+               <Route path="/profile" element={<UserProfilePage />} />
             </Route>
          </Routes>
          <Footer />
