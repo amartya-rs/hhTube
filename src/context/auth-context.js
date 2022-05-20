@@ -3,7 +3,7 @@ import { authReducer, initialState } from "../reducer/auth-reducer";
 import { useNavigate } from "react-router-dom";
 import { useAxios } from "../utils/useAxios";
 import { toastSuccess, toastError } from "../utils/useToast";
-import { getLocalData, setLocalData } from "../utils";
+import { setLocalData } from "../utils";
 
 const AuthContext = createContext();
 
@@ -25,21 +25,51 @@ const AuthProvider = ({ children }) => {
       setError: resetSignupError,
    } = useAxios();
 
-   //if token is present in localstorage then show user logged in
+   const {
+      response: verifiedUserData,
+      error: verifiedError,
+      apiCall: setVerifiedResponse,
+      setError: resetVerifiedError,
+   } = useAxios();
+
    useEffect(() => {
-      if (localStorage.getItem("token") !== null) {
-         authDispatch({
-            type: "SET_USER_CREDENTIALS",
-            payload: getLocalData("user"),
+      const token = localStorage.getItem("token");
+      const tokenIdentifier = localStorage.getItem("tokenIdentifier");
+
+      if (token && tokenIdentifier === "login") {
+         setVerifiedResponse(null, {
+            method: "post",
+            url: "/api/auth/verify",
+            headers: {
+               accept: "*/*",
+            },
+            data: {
+               encodedToken: token,
+            },
          });
       }
       // eslint-disable-next-line
    }, []);
 
    useEffect(() => {
+      if (verifiedUserData !== undefined && !verifiedError) {
+         authDispatch({
+            type: "SET_USER_CREDENTIALS",
+            payload: verifiedUserData.user,
+         });
+         toastSuccess("Welcome back!");
+      }
+      if (verifiedError) {
+         toastError(verifiedError[0]);
+         resetVerifiedError("");
+      }
+      // eslint-disable-next-line
+   }, [verifiedUserData, verifiedError]);
+
+   useEffect(() => {
       if (loginUserData !== undefined && !loginError) {
          setLocalData("token", loginUserData.encodedToken);
-         setLocalData("user", loginUserData.foundUser);
+         setLocalData("tokenIdentifier", "login");
          authDispatch({
             type: "SET_USER_CREDENTIALS",
             payload: loginUserData.foundUser,
@@ -57,7 +87,7 @@ const AuthProvider = ({ children }) => {
    useEffect(() => {
       if (signupUserData !== undefined && !signupError) {
          setLocalData("token", signupUserData.encodedToken);
-         setLocalData("user", signupUserData.createdUser);
+         setLocalData("tokenIdentifier", "signup");
          authDispatch({
             type: "SET_USER_CREDENTIALS",
             payload: signupUserData.createdUser,
@@ -199,7 +229,7 @@ const AuthProvider = ({ children }) => {
    //logging out user
    const logoutUser = () => {
       localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      localStorage.removeItem("tokenIdentifier");
       authDispatch({ type: "CLEAR_FIELDS" });
       toastSuccess("Logged out successfully");
    };
