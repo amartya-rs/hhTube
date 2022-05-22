@@ -16,8 +16,21 @@
    cursor: pointer;
 }
 
+.main-nav .search-bar {
+   position: relative;
+
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.main-nav .search-bar svg {
+   position: absolute;
+   top: 5%;
+   right: 2.5%;
+}
+
 .main-nav .avatar-sm {
-   border: none;
    height: 2.15rem;
    width: 2.15rem;
    cursor: pointer;
@@ -38,7 +51,7 @@
    height: max-content;
    width: max-content;
    padding: 1.5rem 2.75rem;
-   background-color: rgb(250, 218, 244);
+   background-color: var(--PROFILE-HOVER-AREA-BG);
    border-radius: 10px;
    visibility: hidden;
 
