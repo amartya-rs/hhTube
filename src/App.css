@@ -1,3 +1,11 @@
+:root {
+   --MODAL-CONTAINER-BG: rgba(0, 0, 0, 0.4);
+   --SIDEBAR-ACTIVE: rgba(0, 0, 0, 0.2);
+   --SIDEBAR-ACTIVE-DARK-MODE: rgba(221, 186, 217, 0.21);
+   --PROFILE-HOVER-AREA-BG: rgb(250, 218, 244);
+   --DARK-MODE-BG: rgb(33, 33, 33);
+}
+
 .App {
    min-height: 100vh;
    width: 100%;
@@ -11,6 +19,10 @@
 }
 
 .dark-theme {
-   background-color: #212121;
+   background-color: var(--DARK-MODE-BG);
    color: var(--WHITE);
+}
+
+.avatar-sm {
+   border: none;
 }

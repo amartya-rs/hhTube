@@ -26,9 +26,9 @@ aside {
 }
 
 .active {
-   background-color: rgba(0, 0, 0, 0.2);
+   background-color: var(--SIDEBAR-ACTIVE);
 }
 
 .dark-mode-active {
-   background-color: rgba(221, 186, 217, 0.21);
+   background-color: var(--SIDEBAR-ACTIVE-DARK-MODE);
 }
