@@ -16,7 +16,7 @@
    cursor: pointer;
 }
 
-.main-nav .search-bar {
+.search-bar {
    position: relative;
 
    display: flex;
@@ -24,10 +24,9 @@
    gap: 10px;
 }
 
-.main-nav .search-bar svg {
-   position: absolute;
-   top: 5%;
-   right: 2.5%;
+.search-bar svg {
+   position: relative;
+   right: 3rem;
 }
 
 .main-nav .avatar-sm {
@@ -72,4 +71,31 @@
    justify-content: flex-start;
    align-items: center;
    gap: 10px;
+}
+
+/*media query*/
+@media screen and (max-width: 900px) {
+   .main-nav .search-bar {
+      display: none;
+   }
+
+   .App > .search-bar {
+      grid-area: searchbar;
+      display: flex;
+      gap: 0;
+
+      margin-top: 0.8rem;
+      margin-left: 7rem;
+   }
+}
+
+/*media query*/
+@media screen and (max-width: 500px) {
+   .App > .search-bar {
+      margin-left: 1.5rem;
+   }
+
+   .brand {
+      margin-left: 1rem;
+   }
 }

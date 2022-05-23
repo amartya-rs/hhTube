@@ -1,5 +1,5 @@
 aside {
-   background: transparent;
+   background: inherit;
    grid-area: aside;
 }
 
@@ -31,4 +31,26 @@ aside {
 
 .dark-mode-active {
    background-color: var(--SIDEBAR-ACTIVE-DARK-MODE);
+}
+
+/*media query*/
+@media screen and (max-width: 500px) {
+   .side-nav {
+      flex-direction: row;
+      justify-content: space-evenly;
+   }
+
+   aside {
+      background-color: inherit;
+      width: 100%;
+
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 5;
+   }
+
+   .pl-4 {
+      padding-left: 0;
+   }
 }

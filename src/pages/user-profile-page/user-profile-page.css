@@ -16,3 +16,10 @@
    width: 5rem;
    margin-bottom: 4.25rem;
 }
+
+/*media query*/
+@media screen and (max-width: 500px) {
+   .user-details-wrapper {
+      height: 18rem;
+   }
+}

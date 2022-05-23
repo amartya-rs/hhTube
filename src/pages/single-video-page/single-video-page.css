@@ -36,3 +36,19 @@ iframe {
    width: 2.2rem;
    margin-left: 1rem;
 }
+
+/*media query*/
+@media screen and (max-width: 500px) {
+   .iframe-wrapper {
+      height: 35vh;
+   }
+
+   .iframe-wrapper + .icon-wrapper {
+      top: 54%;
+      right: 7%;
+   }
+
+   .video-page-icons {
+      margin-left: 5px;
+   }
+}
