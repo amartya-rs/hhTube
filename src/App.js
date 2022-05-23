@@ -24,6 +24,7 @@ import {
    RestrictedRoute,
    PrivateRoute,
    Modal,
+   SearchBar,
 } from "./components";
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
       <div className={`App ${theme === "dark" ? "dark-theme" : ""}`}>
          <TopNav />
          <Sidebar />
+         <SearchBar />
          <Routes>
             {/*public routes*/}
             <Route path="/" element={<HomePage />} />
