@@ -1,12 +1,13 @@
 .signup-page {
    display: grid;
    grid-template-columns: 1fr;
+   grid-area: main;
 }
 
 .signup-page .auth-form {
    box-shadow: none;
 
-   align-self: center;
+   margin-top: 1.5rem;
    justify-self: center;
    gap: 1rem;
 }

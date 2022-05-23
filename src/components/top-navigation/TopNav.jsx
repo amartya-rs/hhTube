@@ -1,43 +1,23 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiUserCircle } from "react-icons/bi";
 import { BsMoonFill, BsSunFill } from "react-icons/bs";
-import { MdClose, MdSearch } from "react-icons/md";
 import { FiUser, FiLogOut } from "react-icons/fi";
 import { user_profile } from "../../assets/index";
-import { useAuth, useTheme, useVideo } from "../../context";
+import { useAuth, useTheme } from "../../context";
+import { SearchBar } from "../index";
 import "./top-nav.css";
 
 const TopNav = () => {
    const navigate = useNavigate();
    const { authState, logoutUser } = useAuth();
    const { theme, setTheme } = useTheme();
-   const { searchInput, setSearchInput } = useVideo();
-   const { pathname } = useLocation();
-
-   const searchHandler = (value) => {
-      setSearchInput(value.toLowerCase());
-      pathname !== "/explore" && navigate("/explore");
-   };
 
    return (
       <nav className="main-nav">
          <Link to="/">
             <span className="h5 brand">hhTube</span>
          </Link>
-         <div className="search-bar">
-            <input
-               className="text-input"
-               type="text"
-               placeholder="Search"
-               value={searchInput}
-               onChange={(e) => searchHandler(e.target.value)}
-            />
-            {searchInput.length === 0 ? (
-               <MdSearch />
-            ) : (
-               <MdClose onClick={() => setSearchInput("")} />
-            )}
-         </div>
+         <SearchBar />
          <div className="nav-icon-wrapper">
             {theme === "dark" ? (
                <BsSunFill

@@ -7,6 +7,7 @@
 }
 
 .App {
+   background-color: var(--WHITE);
    min-height: 100vh;
    width: 100%;
    display: grid;
@@ -25,4 +26,41 @@
 
 .avatar-sm {
    border: none;
+}
+
+.App > .search-bar {
+   display: none;
+}
+
+/*media query*/
+@media screen and (max-width: 900px) {
+   .App {
+      grid-template-columns: 5rem 1fr;
+      grid-template-rows: 4rem auto 1fr auto;
+      grid-template-areas:
+         "topnav topnav"
+         "searchbar searchbar"
+         "aside main"
+         "footer footer";
+   }
+}
+
+@media screen and (max-width: 500px) {
+   :root {
+      font-size: 85%;
+   }
+
+   .App {
+      grid-template-columns: 1fr;
+      grid-template-rows: 4rem auto 1fr auto;
+      grid-template-areas:
+         "topnav"
+         "searchbar"
+         "main"
+         "footer";
+   }
+
+   .page .video-section {
+      justify-content: center;
+   }
 }

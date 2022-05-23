@@ -43,7 +43,6 @@ const PlaylistPage = () => {
                CREATE NEW PLAYLIST <MdPlaylistAdd color="white" size="24px" />
             </button>
             <h6 className="font-medium">Your playlists</h6>
-            <hr className="mb-2" />
             <ul>
                {playlists?.map((ele) => (
                   <li className="playlist-items" key={ele._id}>

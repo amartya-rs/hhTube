@@ -1,12 +1,13 @@
 .login-page {
    display: grid;
    grid-template-columns: 1fr;
+   grid-area: main;
 }
 
 .login-page .auth-form {
    box-shadow: none;
 
-   align-self: center;
+   margin-top: 1.5rem;
    justify-self: center;
 }
 
@@ -35,4 +36,16 @@
 
 .dark-mode-link {
    color: var(--WHITE);
+}
+
+/*media query*/
+@media screen and (max-width: 500px) {
+   .auth-form {
+      width: fit-content;
+      border: none;
+   }
+
+   .auth-form .dark-mode-bg {
+      background-color: transparent;
+   }
 }

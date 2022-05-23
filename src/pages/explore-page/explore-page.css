@@ -28,3 +28,34 @@
    background-color: var(--PRIMARY-COLOR);
    color: var(--WHITE);
 }
+
+/*media query*/
+@media screen and (max-width: 900px) {
+   .side-nav li span {
+      display: none;
+   }
+
+   .page .filter-chip-wrapper + .video-section {
+      justify-content: space-evenly;
+   }
+}
+
+@media screen and (max-width: 500px) {
+   .filter-chip-wrapper {
+      overflow-y: auto;
+      width: 23.5rem;
+      padding-bottom: 5px;
+
+      flex-wrap: nowrap;
+   }
+
+   .filter-chip-wrapper::-webkit-scrollbar {
+      height: 1rem;
+      background: inherit;
+   }
+
+   .filter-chip-wrapper::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: var(--PRIMARY-BUTTON-HOVER);
+   }
+}
