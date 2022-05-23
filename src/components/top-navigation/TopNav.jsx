@@ -14,6 +14,11 @@ const TopNav = () => {
    const { searchInput, setSearchInput } = useVideo();
    const { pathname } = useLocation();
 
+   const searchHandler = (value) => {
+      setSearchInput(value.toLowerCase());
+      pathname !== "/explore" && navigate("/explore");
+   };
+
    return (
       <nav className="main-nav">
          <Link to="/">
@@ -25,10 +30,7 @@ const TopNav = () => {
                type="text"
                placeholder="Search"
                value={searchInput}
-               onChange={(e) => {
-                  setSearchInput(e.target.value.toLowerCase());
-                  pathname !== "/explore" && navigate("/explore");
-               }}
+               onChange={(e) => searchHandler(e.target.value)}
             />
             {searchInput.length === 0 ? (
                <MdSearch />
