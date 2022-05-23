@@ -10,7 +10,7 @@ const HomePage = () => {
 
    return (
       <main className="page">
-         <header className="mb-4">
+         <header className="mb-4 mt-1">
             <img className="res-img" src={banner} alt="banner" />
          </header>
          <h3>Popular Categories</h3>

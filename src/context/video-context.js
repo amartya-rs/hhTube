@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useAxios } from "../utils/useAxios";
+import { filterBySearchInput, filterByCategory } from "../utils";
 
 const VideoContext = createContext();
 
@@ -7,6 +8,7 @@ const VideoProvider = ({ children }) => {
    const { response: categories, apiCall: getCategories } = useAxios();
    const { response: videoData, apiCall: getVideoData } = useAxios();
    const [currentCategory, setCurrentCategory] = useState("All");
+   const [searchInput, setSearchInput] = useState("");
 
    //fetching video categories
    useEffect(() => {
@@ -19,15 +21,15 @@ const VideoProvider = ({ children }) => {
       getVideoData("videos", { method: "get", url: "/api/videos" });
    }, []);
 
-   //filtering videos based on selected category
-   const videosToDisplay =
-      videoData &&
-      videoData.filter((ele) =>
-         currentCategory.toLowerCase() === "all"
-            ? true
-            : ele.category.replaceAll(" ", "") ===
-              currentCategory.toLowerCase().replaceAll(" ", "")
-      );
+   const filteredVideosBySearchInput = filterBySearchInput(
+      videoData,
+      searchInput
+   );
+
+   const videosToDisplay = filterByCategory(
+      filteredVideosBySearchInput,
+      currentCategory
+   );
 
    return (
       <VideoContext.Provider
@@ -37,6 +39,8 @@ const VideoProvider = ({ children }) => {
             videosToDisplay,
             currentCategory,
             setCurrentCategory,
+            searchInput,
+            setSearchInput,
          }}
       >
          {children}
