@@ -37,77 +37,7 @@ const SingleVideoPage = () => {
                allowFullScreen
             />
          </div>
-         <div className="icon-wrapper">
-            <span>
-               {isPresentInData(likedVideos, selectedVideo?._id) &&
-               authState.isLoggedIn ? (
-                  <AiFillLike
-                     title="unlike video"
-                     className="video-page-icons"
-                     onClick={(e) => {
-                        e.stopPropagation();
-                        authState.isLoggedIn
-                           ? removeFromLike(selectedVideo)
-                           : navigate("/login");
-                     }}
-                  />
-               ) : (
-                  <AiOutlineLike
-                     title="like video"
-                     className="video-page-icons"
-                     onClick={(e) => {
-                        e.stopPropagation();
-                        authState.isLoggedIn
-                           ? addToLike(selectedVideo)
-                           : navigate("/login");
-                     }}
-                  />
-               )}
-            </span>
-            <span>
-               {isPresentInData(watchlaterVideos, selectedVideo?._id) &&
-               authState.isLoggedIn ? (
-                  <MdWatchLater
-                     title="remove from watchlater"
-                     className="video-page-icons"
-                     onClick={(e) => {
-                        e.stopPropagation();
-                        authState.isLoggedIn
-                           ? removeFromWatchlater(selectedVideo)
-                           : navigate("/login");
-                     }}
-                  />
-               ) : (
-                  <MdOutlineWatchLater
-                     title="add to watchlater"
-                     className="video-page-icons"
-                     onClick={(e) => {
-                        e.stopPropagation();
-                        authState.isLoggedIn
-                           ? addToWatchlater(selectedVideo)
-                           : navigate("/login");
-                     }}
-                  />
-               )}
-            </span>
-            <span>
-               <MdPlaylistAdd
-                  title="add to playlist"
-                  className="video-page-icons"
-                  onClick={(e) => {
-                     if (pathname !== "/playlist") {
-                        e.stopPropagation();
-                        if (authState.isLoggedIn) {
-                           setVideoToAdd(selectedVideo);
-                           toggleModal();
-                        } else {
-                           navigate("/login");
-                        }
-                     }
-                  }}
-               />
-            </span>
-         </div>
+
          {selectedVideo && (
             <div className="video-details">
                <h4 className="font-semibold">{selectedVideo.title}</h4>
@@ -132,6 +62,77 @@ const SingleVideoPage = () => {
                         {selectedVideo.subscribers} subscribers
                      </p>
                   </div>
+               </div>
+               <div className="icon-container">
+                  <span>
+                     {isPresentInData(likedVideos, selectedVideo?._id) &&
+                     authState.isLoggedIn ? (
+                        <AiFillLike
+                           title="unlike video"
+                           className="video-page-icons"
+                           onClick={(e) => {
+                              e.stopPropagation();
+                              authState.isLoggedIn
+                                 ? removeFromLike(selectedVideo)
+                                 : navigate("/login");
+                           }}
+                        />
+                     ) : (
+                        <AiOutlineLike
+                           title="like video"
+                           className="video-page-icons"
+                           onClick={(e) => {
+                              e.stopPropagation();
+                              authState.isLoggedIn
+                                 ? addToLike(selectedVideo)
+                                 : navigate("/login");
+                           }}
+                        />
+                     )}
+                  </span>
+                  <span>
+                     {isPresentInData(watchlaterVideos, selectedVideo?._id) &&
+                     authState.isLoggedIn ? (
+                        <MdWatchLater
+                           title="remove from watchlater"
+                           className="video-page-icons"
+                           onClick={(e) => {
+                              e.stopPropagation();
+                              authState.isLoggedIn
+                                 ? removeFromWatchlater(selectedVideo)
+                                 : navigate("/login");
+                           }}
+                        />
+                     ) : (
+                        <MdOutlineWatchLater
+                           title="add to watchlater"
+                           className="video-page-icons"
+                           onClick={(e) => {
+                              e.stopPropagation();
+                              authState.isLoggedIn
+                                 ? addToWatchlater(selectedVideo)
+                                 : navigate("/login");
+                           }}
+                        />
+                     )}
+                  </span>
+                  <span>
+                     <MdPlaylistAdd
+                        title="add to playlist"
+                        className="video-page-icons"
+                        onClick={(e) => {
+                           if (pathname !== "/playlist") {
+                              e.stopPropagation();
+                              if (authState.isLoggedIn) {
+                                 setVideoToAdd(selectedVideo);
+                                 toggleModal();
+                              } else {
+                                 navigate("/login");
+                              }
+                           }
+                        }}
+                     />
+                  </span>
                </div>
                <div className="my-2">
                   <p>{selectedVideo.description}</p>

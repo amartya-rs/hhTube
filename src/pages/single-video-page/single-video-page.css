@@ -14,6 +14,8 @@ iframe {
    width: 100%;
    display: flex;
    flex-direction: column;
+
+   position: relative;
 }
 
 .video-details .video-content {
@@ -25,10 +27,13 @@ iframe {
    margin-right: 1rem;
 }
 
-.iframe-wrapper + .icon-wrapper {
-   top: 92%;
-   right: 10%;
-   cursor: pointer;
+.video-details .icon-container {
+   position: absolute;
+   top: 20%;
+   right: 0;
+
+   display: flex;
+   gap: 10px;
 }
 
 .video-page-icons {
