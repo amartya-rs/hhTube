@@ -27,7 +27,7 @@ const Sidebar = () => {
                }
                onClick={() => navigate("/")}
             >
-               <AiOutlineHome />
+               <AiOutlineHome title="Home" />
                <span>Home</span>
             </li>
             <li
@@ -40,7 +40,7 @@ const Sidebar = () => {
                      : ""
                }
             >
-               <MdOutlineExplore />
+               <MdOutlineExplore title="Explore" />
                <span>Explore</span>
             </li>
             <li
@@ -53,7 +53,7 @@ const Sidebar = () => {
                      : ""
                }
             >
-               <MdPlaylistPlay />
+               <MdPlaylistPlay title="Playlist" />
                <span>Playlist</span>
             </li>
             <li
@@ -66,7 +66,7 @@ const Sidebar = () => {
                      : ""
                }
             >
-               <AiOutlineLike />
+               <AiOutlineLike title="Liked" />
                <span>Liked Videos</span>
             </li>
             <li
@@ -79,7 +79,7 @@ const Sidebar = () => {
                      : ""
                }
             >
-               <MdOutlineWatchLater />
+               <MdOutlineWatchLater title="Watchlater" />
                <span>Watch Later</span>
             </li>
             <li
@@ -92,7 +92,7 @@ const Sidebar = () => {
                      : ""
                }
             >
-               <MdOutlineHistory />
+               <MdOutlineHistory title="History" />
                <span>History</span>
             </li>
          </ul>
