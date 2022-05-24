@@ -17,6 +17,7 @@ Live link - [hhtube](https://hh-tube.netlify.app/)
 ## Features
 
 -  Filter the videos by category on explore page
+-  Search video
 -  Add/remove videos from Liked videos
 -  Add/remove videos from Watchlater
 -  Playlist
@@ -33,6 +34,7 @@ Live link - [hhtube](https://hh-tube.netlify.app/)
    -  Logout
 -  Alert/Toast
 -  Dark mode
+-  Responsive site
 
 ## Run the app locally
 
