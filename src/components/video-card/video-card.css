@@ -61,12 +61,22 @@
 }
 
 .card-icon {
-   height: 24px;
-   width: 24px;
+   height: 1.5rem;
+   width: 1.5rem;
 }
 
 .video-card .icon-wrapper .delete-icon {
    position: absolute;
    top: -6.5rem;
    right: 10px;
+}
+
+@media screen and (max-width: 500px) {
+   .video-card {
+      width: 20rem;
+      height: fit-content;
+   }
+   .icon-wrapper {
+      top: 58%;
+   }
 }
