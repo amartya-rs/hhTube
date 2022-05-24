@@ -87,6 +87,10 @@
       margin-top: 0.8rem;
       margin-left: 7rem;
    }
+
+   .App > .search-bar input {
+      height: 2.3rem;
+   }
 }
 
 /*media query*/

@@ -14,7 +14,7 @@
    justify-content: space-between;
 }
 
-.playlist-page h6 {
+.playlist-page .button-icons + h6 {
    padding-bottom: 8px;
    border-bottom: 1px solid var(--GREY);
 }
