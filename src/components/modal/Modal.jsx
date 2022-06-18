@@ -1,8 +1,9 @@
 import "./modal.css";
-import { MdOutlineClose } from "react-icons/md";
+import { MdOutlineClose, MdDone, MdAdd } from "react-icons/md";
 import { usePlaylist } from "../../context/playlist-context";
 import { useLocation } from "react-router-dom";
 import { useTheme } from "../../context";
+import { isPresentInData } from "../../utils/isPresentInData";
 
 const Modal = () => {
    const { pathname } = useLocation();
@@ -30,11 +31,16 @@ const Modal = () => {
                      {playlists?.map((ele) => (
                         <li className="playlist-items" key={ele._id}>
                            <button
-                              className="button primary h6 font-medium"
+                              className="button button-icons primary h6 font-medium"
                               onClick={() =>
                                  addVideoToPlaylist(ele._id, videoToAdd)
                               }
                            >
+                              {isPresentInData(ele.videos, videoToAdd._id) ? (
+                                 <MdDone color="white" />
+                              ) : (
+                                 <MdAdd color="white" />
+                              )}
                               {ele.title}
                            </button>
                         </li>
