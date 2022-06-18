@@ -28,6 +28,8 @@ iframe {
 }
 
 .video-details .icon-container {
+   cursor: pointer;
+
    position: absolute;
    top: 20%;
    right: 0;
